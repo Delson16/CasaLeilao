@@ -34,9 +34,9 @@ public class ProdutosDAO {
             ps.setInt(2, produto.getValor());
             ps.setString(3, produto.getStatus());
             ps.execute();
-            JOptionPane.showMessageDialog(null, "Produto salvo com sucesso!");
+            JOptionPane.showMessageDialog(null, "Produto salvo com sucesso!\n\nInformações do produto cadastrado:\n\nNome: " + produto.getNome() + "\nValor: " + produto.getValor());
         } catch (SQLException e){
-            JOptionPane.showMessageDialog(null, "Erro na gravação dos dados: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Produto não cadastrado!\n\nHouve algum erro no sistema. Tente novamente mais tarde.");
         } 
     }
     
