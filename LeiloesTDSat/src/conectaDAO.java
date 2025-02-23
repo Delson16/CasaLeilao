@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
  */
 public class conectaDAO {
     private final String password = "996562165";
-    private final String url = "jdbc:mysql://localhost/uc11";
+    private final String url = "jdbc:mysql://localhost/uc11?useSSL=false&allowPublicKeyRetrieval=true";
     private final String user = "root";
     
     

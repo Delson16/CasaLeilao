@@ -35,13 +35,40 @@ public class ProdutosDAO {
             ps.setString(3, produto.getStatus());
             ps.execute();
             JOptionPane.showMessageDialog(null, "Produto salvo com sucesso!\n\nInformações do produto cadastrado:\n\nNome: " + produto.getNome() + "\nValor: " + produto.getValor());
+            conn.close();
         } catch (SQLException e){
             JOptionPane.showMessageDialog(null, "Produto não cadastrado!\n\nHouve algum erro no sistema. Tente novamente mais tarde.");
         } 
     }
     
-    public ArrayList<ProdutosDTO> listarProdutos(){
+    public ArrayList<ProdutosDTO> listarProdutos() throws SQLException{
         
+        conn = new conectaDAO().GetConnection();
+        
+        try{
+            String sql = "SELECT * FROM produtos";
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            
+            while(rs.next()){
+                int id = rs.getInt("id");
+                String nome = rs.getString("nome");
+                String status = rs.getString("status");
+                int valor = rs.getInt("valor");
+                
+                ProdutosDTO produto = new ProdutosDTO();
+                produto.setId(id);
+                produto.setNome(nome);
+                produto.setStatus(status);
+                produto.setValor(valor);
+                
+                listagem.add(produto);
+            }
+            conn.close();
+
+        } catch (SQLException e){
+            throw e;
+        }
         return listagem;
     }
     
